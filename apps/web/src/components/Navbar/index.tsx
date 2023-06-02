@@ -29,7 +29,7 @@ function Navbar() {
       <Flex
         alignItems="center"
         as="header"
-        backgroundColor="gray.800"
+        backgroundColor="brand.100"
         justifyContent="space-between"
         paddingX={8}
       >
@@ -63,7 +63,7 @@ function Navbar() {
           </Flex>
         </Flex>
       </Flex>
-      <Divider borderColor="gray.500" />
+      <Divider borderColor="brand.500" />
       <Outlet />
     </>
   )

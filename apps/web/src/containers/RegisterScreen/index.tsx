@@ -49,7 +49,7 @@ function RegisterScreen(): React.ReactElement {
             to enjoy all of our cool features ✌️
           </Text>
         </Stack>
-        <Box rounded="lg" bg="gray.700" boxShadow="lg" padding={8}>
+        <Box rounded="lg" bg="gray.700" boxShadow="lg" padding={8} backgroundColor='brand.500'>
           <FormProvider {...methods}>
             <Stack spacing={4}>
               <FormControl id="email" isRequired>
