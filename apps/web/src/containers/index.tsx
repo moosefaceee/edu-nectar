@@ -1,5 +1,7 @@
-export { default as DashboardScreen } from './DashboardScreen'
 export { default as HomeScreen } from './HomeScreen'
+export { default as LearningPathsScreen } from './LearningPathsScreen'
+export { default as LessonScreen } from './LessonScreen'
 export { default as LoginScreen } from './LoginScreen'
 export { default as NotFoundScreen } from './NotFoundScreen'
+export { default as TopicsScreen } from './TopicsScreen'
 export { default as WalkthroughScreen } from './WalkthroughScreen'

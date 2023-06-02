@@ -1,4 +1,6 @@
-import { Stack, Text } from '@chakra-ui/react'
+import { Flex, Image, Stack, Text } from '@chakra-ui/react'
+import { ContactUs, Testimonials } from '../../components'
+import images from '../../theme/images'
 
 function HomeScreen(): React.ReactElement {
   return (
@@ -17,6 +19,11 @@ function HomeScreen(): React.ReactElement {
         classrooms, interactive lesson planning, progress tracking, communication tools, and a vast
         library of educational resources.
       </Text>
+      <Flex width="100%" justifyContent="center">
+        <Image width={500} height="auto" src={images.people} />
+      </Flex>
+      <Testimonials />
+      <ContactUs />
     </Stack>
   )
 }
