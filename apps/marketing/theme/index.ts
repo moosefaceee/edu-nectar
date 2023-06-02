@@ -159,7 +159,11 @@ const theme = extendTheme({
   colors,
   config,
   components,
-  textStyles
+  textStyles,
+  fonts: {
+    heading: 'Bree Serif, sans-serif',
+    body: 'Bree Serif, sans-serif'
+  }
 })
 
 export { theme }

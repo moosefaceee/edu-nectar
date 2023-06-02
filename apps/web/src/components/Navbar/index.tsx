@@ -37,18 +37,18 @@ function Navbar() {
         <Flex height={16} alignItems="center" justifyContent="flex-end" as="nav">
           <Flex alignItems="center">
             <Stack direction="row" spacing={6}>
-              <Menu>
+              <Menu colorScheme="brand">
                 <MenuButton
                   as={IconButton}
                   cursor="pointer"
-                  colorScheme="black"
+                  colorScheme="brand"
                   variant="solid"
                   borderWidth={1}
                   borderColor="black"
                 >
                   <Icon as={FiUser} />
                 </MenuButton>
-                <MenuList alignItems="center">
+                <MenuList alignItems="center" bgColor="brand.500">
                   <VStack>
                     <Spacer />
                     <Spacer />
@@ -61,9 +61,15 @@ function Navbar() {
                     <Spacer />
                   </VStack>
                   <MenuDivider />
-                  <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem bgColor="brand.500" _hover={{ bgColor: 'brand.400' }}>
+                    Your Assessments
+                  </MenuItem>
+                  <MenuItem bgColor="brand.500" _hover={{ bgColor: 'brand.400' }}>
+                    Account Settings
+                  </MenuItem>
+                  <MenuItem bgColor="brand.500" _hover={{ bgColor: 'brand.400' }}>
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

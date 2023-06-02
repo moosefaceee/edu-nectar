@@ -18,6 +18,6 @@ function Logo({ ...rest }: ImageProps): ReactElement {
 export default Logo
 
 Logo.defaultProps = {
-  width: 175,
+  width: 140,
   height: 'auto'
 }
