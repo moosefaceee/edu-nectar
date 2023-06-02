@@ -15,6 +15,9 @@ function GuestNavbar() {
         <Logo />
         <Flex height={16} alignItems="center" justifyContent="center" as="nav" width="100%">
           <Stack direction="row" spacing={6} alignItems="center">
+            <NavLink style={{ color: 'black' }} to="/">
+              Home
+            </NavLink>
             <NavLink style={{ color: 'black' }} to="/about">
               About Us
             </NavLink>
