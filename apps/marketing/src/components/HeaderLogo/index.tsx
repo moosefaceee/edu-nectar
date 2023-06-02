@@ -1,23 +1,18 @@
-import { Box, Image, ImageProps } from '@chakra-ui/react'
-import { ReactElement } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthProvider'
+import { Box, Image, Text } from '@chakra-ui/react'
 import images from '../../theme/images'
 
-function HeaderLogo({ ...rest }: ImageProps): ReactElement {
-  let { isAuthenticated } = useAuth()
-  let navigate = useNavigate()
+export default function HeaderLogo() {
 
   return (
-    <Box onClick={() => navigate(isAuthenticated ? '/auth/dashboard' : '/')} cursor="pointer">
-      <Image {...rest} src={images.sovtech} />
+    <Box display='flex' position='absolute'>
+      <Image src={images.sovtech} margin={0}/>
+      <Box marginTop={170}
+        position='absolute'
+        left={240}
+      >
+        <Text color='brand.800' fontSize={16} fontWeight={500}>Education, the Nectar of Success.</Text>
+        <Text color='brand.800' fontSize={16} fontWeight={500}>Where Learning Flows Naturally</Text>
+      </Box>
     </Box>
   )
-}
-
-export default HeaderLogo
-
-HeaderLogo.defaultProps = {
-  width: 175,
-  height: 'auto'
 }
