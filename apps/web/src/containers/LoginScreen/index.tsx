@@ -43,16 +43,17 @@ function LoginScreen(): React.ReactElement {
                   <Link color="brand.800">Forgot password?</Link>
                 </Stack>
                 <Button
-                  color="brand.900"
+                  backgroundColor="gray.800"
+                  _hover={{ backgroundColor: 'gray.700' }}
                   loadingText="Submitting"
                   size="lg"
-                  colorScheme="brand"
+                  // colorScheme="brand"
                   onClick={methods.handleSubmit(onSubmit)}
                 >
                   Sign in
                 </Button>
               </Stack>
-              <Stack paddingTop={4}>
+              <Stack paddingTop={2}>
                 <Text alignItems="center">
                   Don't have an account? <Link color="brand.800">Signup</Link>
                 </Text>

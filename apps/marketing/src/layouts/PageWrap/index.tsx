@@ -1,6 +1,7 @@
 import { Flex, FlexProps } from '@chakra-ui/react'
 import { Helmet } from 'react-helmet-async'
 import { Outlet } from 'react-router-dom'
+import { Footer } from '../../components'
 
 type PageWrapProps = FlexProps & {
   title: string
@@ -14,6 +15,7 @@ function PageWrap({ children, title, ...rest }: PageWrapProps) {
         {children}
         <Outlet />
       </Flex>
+      <Footer />
     </>
   )
 }
