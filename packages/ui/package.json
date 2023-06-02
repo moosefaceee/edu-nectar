@@ -12,5 +12,8 @@
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.7.0"
   }
 }
