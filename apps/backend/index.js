@@ -33,7 +33,24 @@ async function main() {
   const vectorStore = new VectorStore()
   await vectorStore.initialise()
 
-  app.get('/api', async function (_, res) {
+  app.get('/api/quiz', async function (_, res) {
+    try {
+      const result = await vectorStore.askForQuestions()
+      res.json(result)
+    } catch (error) {
+      res.status(500).json({ errorMessage: 'Failed to fetch ', error })
+    }
+  })
+  app.get('/api/summary', async function (_, res) {
+    try {
+      const result = await vectorStore.askForSummary()
+      res.json(result)
+    } catch (error) {
+      res.status(500).json({ errorMessage: 'Failed to fetch ', error })
+    }
+  })
+
+  app.get('/api/topics', async function (_, res) {
     try {
       const result = await vectorStore.askForTopics()
       res.json(result)
@@ -41,6 +58,7 @@ async function main() {
       res.status(500).json({ errorMessage: 'Failed to fetch ', error })
     }
   })
+
   app.use('/test', TestRouter)
 
   // Start the server
