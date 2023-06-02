@@ -29,7 +29,7 @@ function Navbar() {
       <Flex
         alignItems="center"
         as="header"
-        backgroundColor="gray.800"
+        backgroundColor="brand.100"
         justifyContent="space-between"
         paddingX={8}
       >
@@ -38,7 +38,14 @@ function Navbar() {
           <Flex alignItems="center">
             <Stack direction="row" spacing={6}>
               <Menu>
-                <MenuButton as={IconButton} cursor="pointer">
+                <MenuButton
+                  as={IconButton}
+                  cursor="pointer"
+                  colorScheme="black"
+                  variant="solid"
+                  borderWidth={1}
+                  borderColor="black"
+                >
                   <Icon as={FiUser} />
                 </MenuButton>
                 <MenuList alignItems="center">
@@ -63,7 +70,7 @@ function Navbar() {
           </Flex>
         </Flex>
       </Flex>
-      <Divider borderColor="gray.500" />
+      <Divider borderColor="brand.500" />
       <Outlet />
     </>
   )

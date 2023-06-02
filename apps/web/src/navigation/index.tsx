@@ -5,8 +5,7 @@ import {
   DashboardScreen,
   HomeScreen,
   LoginScreen,
-  NotFoundScreen,
-  RegisterScreen
+  NotFoundScreen
 } from '../containers'
 import { RequireAuth } from '../context/AuthProvider'
 import { PageWrap } from '../layouts'
@@ -26,7 +25,6 @@ function Navigation() {
       <Route element={<GuestNavbar />}>
         <Route element={<PageWrap title="EduNectar" />}>
           <Route path="/" element={<LoginScreen />} />
-          <Route path="register" element={<RegisterScreen />} />
           <Route path="home" element={<HomeScreen />} />
           <Route path="about" element={<AboutScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
