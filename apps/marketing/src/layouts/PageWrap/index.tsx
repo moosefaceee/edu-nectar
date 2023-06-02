@@ -6,7 +6,7 @@ type PageWrapProps = FlexProps & {
   title: string
 }
 
-function PageWrap({ children, title, ...rest }: PageWrapProps): React.JSX.Element {
+function PageWrap({ children, title, ...rest }: PageWrapProps) {
   return (
     <>
       <Helmet title={title} />
