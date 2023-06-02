@@ -3,52 +3,16 @@ import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import beeLoader from '../../assets/lotties/bee-loader.json'
 import { HexagonCard, Lottie } from '../../components'
-import { useAuth } from '../../context/AuthProvider'
-import { getLearningPaths } from '../../queries'
-
-const topics = [
-  {
-    topic: 'Topic Name',
-    learningPaths: [
-      {
-        learningPath: 'Learning Path Name'
-      },
-      {
-        learningPath: 'Another Learning Path Name'
-      }
-    ]
-  },
-  {
-    topic: 'Another Topic Name',
-    learningPaths: [
-      {
-        learningPath: 'Learning Path Name'
-      },
-      {
-        learningPath: 'Another Learning Path Name'
-      }
-    ]
-  },
-  {
-    topic: 'Yet Another Topic Name, Yet Another Topic Name?',
-    learningPaths: [
-      {
-        learningPath: 'Learning Path Name'
-      },
-      {
-        learningPath: 'Another Learning Path Name'
-      }
-    ]
-  }
-]
+import { getTopics } from '../../queries'
 
 function TopicsScreen(): React.ReactElement {
   const navigate = useNavigate()
 
-  const { user } = useAuth()
+  const { data, isLoading } = useQuery('topics', getTopics)
 
-  // Queries
-  const { data: learningPaths, isLoading, error } = useQuery('learningPaths', getLearningPaths)
+  const parsed = data?.data && JSON.parse(data.data)[0]
+
+  const topics = parsed?.topics && parsed.topics.slice(0, 6)
 
   if (isLoading)
     return (
@@ -75,24 +39,26 @@ function TopicsScreen(): React.ReactElement {
             </Text>
           </Box>
         </Flex>
-        <Flex width="100%" justifyContent="center" flex={1} height="290px">
-          <Card width="100%" padding={6} backgroundColor="brand.100" height="100%">
+        <Flex width="100%" justifyContent="center" flex={1} height="500px">
+          <Card width="100%" padding={6} backgroundColor="brand.100" height="550px">
             <VStack spacing={6} width="100%">
               <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(3, 1fr)" gap={20}>
-                {topics.map((topic) => (
-                  <GridItem>
-                    <HexagonCard
-                      onClick={() =>
-                        navigate(`/auth/lesson/${12345}`, {
-                          state: {
-                            topic: 'Topic One'
-                          }
-                        })
-                      }
-                      title={topic.topic}
-                    />
-                  </GridItem>
-                ))}
+                {topics.map((topic: any) => {
+                  return (
+                    <GridItem>
+                      <HexagonCard
+                        onClick={() =>
+                          navigate(`/auth/lesson/${12345}`, {
+                            state: {
+                              topic: 'Topic One'
+                            }
+                          })
+                        }
+                        title={topic}
+                      />
+                    </GridItem>
+                  )
+                })}
               </Grid>
             </VStack>
           </Card>
