@@ -28,8 +28,8 @@ function GuestNavbar() {
         </Flex>
         <Button
           as={Link}
-          to="https://www.derp.com"
-          colorScheme="brand"
+          to="https://edu-nectar-web.onrender.com/"
+          bgColor="gray.700"
           fontWeight="500"
           width={150}
         >
