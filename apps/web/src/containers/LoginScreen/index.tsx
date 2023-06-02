@@ -31,7 +31,7 @@ function LoginScreen(): React.ReactElement {
             ✌️
           </Text>
         </Stack>
-        <Box rounded="lg" bg="gray.700" boxShadow="lg" padding={8}>
+        <Box rounded="lg" bg="brand.400" boxShadow="lg" padding={8}>
           <FormProvider {...methods}>
             <Stack spacing={4}>
               <TextInput label="Email address" name="email" type="email" />
@@ -39,16 +39,13 @@ function LoginScreen(): React.ReactElement {
               <Stack spacing={6}>
                 <Stack direction="row" alignItems="center" justify="space-between">
                   <RememberMe />
-                  <Link color="blue.400">Forgot password?</Link>
+                  <Link color="brand.800">Forgot password?</Link>
                 </Stack>
                 <Button
+                color='brand.900'
                   loadingText="Submitting"
                   size="lg"
-                  backgroundColor="blue.400"
-                  color="white"
-                  _hover={{
-                    backgroundColor: 'blue.500'
-                  }}
+                  colorScheme="brand"
                   onClick={methods.handleSubmit(onSubmit)}
                 >
                   Sign in
@@ -57,7 +54,7 @@ function LoginScreen(): React.ReactElement {
               <Stack paddingTop={4}>
                 <Text alignItems="center">
                   Don't have an account?{' '}
-                  <Link onClick={() => navigate('/register')} color="blue.400">
+                  <Link onClick={() => navigate('/register')} color="brand.800">
                     Signup
                   </Link>
                 </Text>

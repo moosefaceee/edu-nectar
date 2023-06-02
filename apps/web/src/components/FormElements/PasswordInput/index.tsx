@@ -46,9 +46,9 @@ function PasswordInput({
 
   return (
     <FormControl {...rest}>
-      <FormLabel>Password</FormLabel>
+      <FormLabel color='black'>Password</FormLabel>
       <InputGroup>
-        <Input {...field} type={passwordVisible ? 'text' : 'password'} />
+        <Input {...field} _focus={{ borderColor: 'brand.500', boxShadow: 'none' }} type={passwordVisible ? 'text' : 'password'} />
         <InputRightElement alignItems="center">
           <Button
             onClick={toggleVisible}
@@ -56,13 +56,13 @@ function PasswordInput({
             borderTopLeftRadius={0}
             borderBottomLeftRadius={0}
             _invalid={{ borderColor: 'red' }}
-            _focus={{ borderColor: 'blue.500' }}
+            _focus={{ borderColor: 'brand.500' }}
             _hover={{ backgroundColor: 'gray.100' }}
           >
             {passwordVisible ? (
-              <Icon as={FiEye} width={20} color="blue.500" />
+              <Icon as={FiEye} width={20} color="brand.500" />
             ) : (
-              <Icon as={FiEyeOff} width={20} color="blue.500" />
+              <Icon as={FiEyeOff} width={20} color="brand.500" />
             )}
           </Button>
         </InputRightElement>

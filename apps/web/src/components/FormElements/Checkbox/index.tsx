@@ -43,6 +43,7 @@ function CheckBox({
 
         return (
           <FormControl
+            color='black'
             isInvalid={showError}
             isDisabled={isDisabled}
             id={id}
@@ -55,7 +56,7 @@ function CheckBox({
             </ChakraCheckbox>
             {/* It is important that the Label comes after the Control due to css selectors */}
             {helperText && <FormHelperText>{helperText}</FormHelperText>}
-            <FormErrorMessage>{error?.message}</FormErrorMessage>
+            <FormErrorMessage color='black'>{error?.message}</FormErrorMessage>
           </FormControl>
         )
       }}
