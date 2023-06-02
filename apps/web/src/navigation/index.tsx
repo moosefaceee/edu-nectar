@@ -1,13 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { GuestNavbar, Navbar } from '../components'
-import {
-  AboutScreen,
-  DashboardScreen,
-  HomeScreen,
-  LoginScreen,
-  NotFoundScreen,
-  RegisterScreen
-} from '../containers'
+import { DashboardScreen, HomeScreen, LoginScreen, NotFoundScreen } from '../containers'
 import { RequireAuth } from '../context/AuthProvider'
 import { PageWrap } from '../layouts'
 
@@ -24,11 +17,9 @@ function Navigation() {
        * Unauthenticated pages (Guest)
        */}
       <Route element={<GuestNavbar />}>
-        <Route element={<PageWrap title="EduNectar" />}>
+        <Route element={<PageWrap title="Edu Nectar" />}>
           <Route path="/" element={<LoginScreen />} />
-          <Route path="register" element={<RegisterScreen />} />
           <Route path="home" element={<HomeScreen />} />
-          <Route path="about" element={<AboutScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Route>
       </Route>

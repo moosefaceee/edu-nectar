@@ -8,19 +8,23 @@ function GuestNavbar() {
       <Flex
         alignItems="center"
         as="header"
-        backgroundColor="brand.400"
+        backgroundColor="brand.100"
         justifyContent="space-between"
         paddingX={8}
       >
         <Logo />
         <Flex height={16} alignItems="center" justifyContent="flex-end" as="nav">
           <Stack direction="row" spacing={6} alignItems="center">
-            <NavLink to="/home">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
+            <NavLink style={{ color: 'black' }} to="/home">
+              Home
+            </NavLink>
+            <NavLink style={{ color: 'black' }} to="/">
+              Login
+            </NavLink>
           </Stack>
         </Flex>
       </Flex>
-      <Divider borderColor="brand.300" />
+      <Divider borderColor="brand.500" />
       <Outlet />
     </>
   )

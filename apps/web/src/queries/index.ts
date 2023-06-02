@@ -1,0 +1,1 @@
+export { getLearningPaths } from './getLearningPaths'

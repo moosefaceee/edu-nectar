@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Heading, Link, Stack, Text } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { RememberMe } from '../../components'
 import { PasswordInput, TextInput } from '../../components/FormElements'
 import { useAuth } from '../../context/AuthProvider'
@@ -25,10 +25,11 @@ function LoginScreen(): React.ReactElement {
     <Flex align="center" justify="center" flexDirection="column" flex={1}>
       <Stack spacing={8} mx="auto" width="md" paddingX={6}>
         <Stack align="center">
-          <Heading fontSize="4xl">Sign in to your account</Heading>
-          <Text fontSize="lg" color="gray.400">
-            to enjoy all of our cool <NavLink to="about">features</NavLink>
-            ✌️
+          <Heading fontSize="4xl" color="brand.800">
+            Sign in to your account
+          </Heading>
+          <Text fontSize="lg" color="brand.600">
+            Education, the nectar of success 📚
           </Text>
         </Stack>
         <Box rounded="lg" bg="brand.400" boxShadow="lg" padding={8}>
@@ -42,7 +43,7 @@ function LoginScreen(): React.ReactElement {
                   <Link color="brand.800">Forgot password?</Link>
                 </Stack>
                 <Button
-                color='brand.900'
+                  color="brand.900"
                   loadingText="Submitting"
                   size="lg"
                   colorScheme="brand"
@@ -53,10 +54,7 @@ function LoginScreen(): React.ReactElement {
               </Stack>
               <Stack paddingTop={4}>
                 <Text alignItems="center">
-                  Don't have an account?{' '}
-                  <Link onClick={() => navigate('/register')} color="brand.800">
-                    Signup
-                  </Link>
+                  Don't have an account? <Link color="brand.800">Signup</Link>
                 </Text>
               </Stack>
             </Stack>

@@ -32,7 +32,7 @@ function TextInput({ name, helperText, label, rightIcon, ...rest }: TextInputPro
     <FormControl {...fieldState} isInvalid={showError}>
       <FormLabel color='brand.900' >{label}</FormLabel>
       <InputGroup>
-        <Input {...field} _focus={{ borderColor: 'brand.500', boxShadow: 'none' }} {...rest} />
+        <Input {...field} _focus={{ borderColor: 'brand.500', boxShadow: 'none', backgroundColor: 'brand.500' }} {...rest} />
         {rightIcon && <InputRightElement>{rightIcon}</InputRightElement>}
       </InputGroup>
       {helperText && <FormHelperText>{helperText}</FormHelperText>}
