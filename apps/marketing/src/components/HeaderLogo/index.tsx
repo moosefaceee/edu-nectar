@@ -4,14 +4,13 @@ import images from '../../theme/images'
 export default function HeaderLogo() {
 
   return (
-    <Box display='flex' position='absolute'>
-      <Image src={images.sovtech} margin={0}/>
+    <Box display='flex'>
+      <Image src={images.sovtech} />
       <Box marginTop={170}
-        position='absolute'
-        left={240}
+        marginLeft={-200}
       >
-        <Text color='brand.800' fontSize={16} fontWeight={500}>Education, the Nectar of Success.</Text>
-        <Text color='brand.800' fontSize={16} fontWeight={500}>Where Learning Flows Naturally</Text>
+        <Text color='brand.800' fontSize={16} fontWeight={600}>Education, the Nectar of Success.</Text>
+        <Text color='brand.800' fontSize={16} fontWeight={600}>Where Learning Flows Naturally</Text>
       </Box>
     </Box>
   )

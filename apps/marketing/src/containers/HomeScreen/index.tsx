@@ -1,14 +1,18 @@
 import { Flex, Image, Stack, Text } from '@chakra-ui/react'
 import { ContactUs, Testimonials } from '../../components'
 import images from '../../theme/images'
+import HeaderLogo from '../../components/HeaderLogo'
 
 function HomeScreen(): React.ReactElement {
   return (
     <Stack flexDirection="column" paddingX={20} paddingY={4}>
+      <Flex width="100%" justifyContent="center" mb={1}>
+      <HeaderLogo />
+      </Flex>
       <Text
         textStyle="h4"
         fontWeight="600"
-        color="black"
+        color="brand.900"
         paddingX="20vw"
         paddingTop={12}
         textAlign="center"
