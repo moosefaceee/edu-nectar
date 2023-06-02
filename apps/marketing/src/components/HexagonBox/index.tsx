@@ -1,10 +1,11 @@
-import { Button, Center, Divider, Flex, Stack, Text, theme } from '@chakra-ui/react'
+import { Button, Center, Divider, Flex, Stack, Text } from '@chakra-ui/react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { Logo } from '..'
 import styled from '@emotion/styled'
+import { theme } from '../../theme'
 
 type HexagonBoxProps = {
-  title: string
+  onClick?: () => void
   children?: JSX.Element
 }
 const Hexagon = styled.span`
@@ -12,8 +13,8 @@ const Hexagon = styled.span`
     margin-top: 60px;
     width: 208px;
     height: 120px;
-    background-color: yellow;
-    border-color: black;
+    background-color: ${theme.colors.brand[500]};
+    border-color: ${theme.colors.brand[500]};
     position: relative;
     display: inline-block;
   }
@@ -40,17 +41,16 @@ const Hexagon = styled.span`
     border-right: 104px solid transparent;
   }
   .hex:hover {
-    background-color: lightyellow;
-    border-color: darkyellow;
+    background-color: ${theme.colors.brand[200]};
+    border-color: ${theme.colors.brand[200]};
     cursor: pointer;
   }
 `
-function HexagonBox({ title, children }: HexagonBoxProps) {
+function HexagonBox({ children, onClick }: HexagonBoxProps) {
   return (
-    <Hexagon>
+    <Hexagon onClick={() => onClick?.()}>
       <Center className="hex">
         <Text textStyle="h5" color="white" textAlign="center">
-          {title}
         </Text>
         {children}
       </Center>
