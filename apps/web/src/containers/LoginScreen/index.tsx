@@ -25,10 +25,9 @@ function LoginScreen(): React.ReactElement {
     <Flex align="center" justify="center" flexDirection="column" flex={1}>
       <Stack spacing={8} mx="auto" width="md" paddingX={6}>
         <Stack align="center">
-          <Heading fontSize="4xl">Sign in to your account</Heading>
-          <Text fontSize="lg" color="gray.400">
-            to enjoy all of our cool <NavLink to="about">features</NavLink>
-            ✌️
+          <Heading fontSize="4xl" color='brand.800'>Sign in to your account</Heading>
+          <Text fontSize="lg" color="brand.600">
+            Education, the nectar of success 📚
           </Text>
         </Stack>
         <Box rounded="lg" bg="brand.400" boxShadow="lg" padding={8}>
