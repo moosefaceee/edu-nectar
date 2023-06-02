@@ -1,4 +1,3 @@
-export { default as AboutScreen } from './AboutScreen'
 export { default as DashboardScreen } from './DashboardScreen'
 export { default as HomeScreen } from './HomeScreen'
 export { default as LoginScreen } from './LoginScreen'

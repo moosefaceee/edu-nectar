@@ -18,8 +18,8 @@ function GuestNavbar() {
             <NavLink style={{ color: 'black' }} to="/home">
               Home
             </NavLink>
-            <NavLink style={{ color: 'black' }} to="/about">
-              About
+            <NavLink style={{ color: 'black' }} to="/">
+              Login
             </NavLink>
           </Stack>
         </Flex>
