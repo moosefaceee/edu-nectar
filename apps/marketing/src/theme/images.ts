@@ -2,6 +2,7 @@ export default {
   bg: new URL('../assets/images/core-suite-bg.jpeg', import.meta.url).href,
   sovtech: new URL('../assets/images/sovtech.png', import.meta.url).href,
   sovtechSmall: new URL('../assets/images/sovtech-small.png', import.meta.url).href,
+  africaLogo: new URL('../assets/images/logo.png', import.meta.url).href,
   404: new URL('../assets/images/404.svg', import.meta.url).href,
   noData: new URL('../assets/images/no-data.png', import.meta.url).href,
   bottom: new URL('../assets/map/bottom.png', import.meta.url).href,

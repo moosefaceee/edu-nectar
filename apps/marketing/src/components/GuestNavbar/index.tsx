@@ -1,6 +1,6 @@
-import { Button, Divider, Flex, Stack } from '@chakra-ui/react'
+import { Button, Divider, Flex, Stack, Image } from '@chakra-ui/react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
-import { Logo } from '..'
+import images from '../../theme/images'
 
 function GuestNavbar() {
   return (
@@ -12,11 +12,14 @@ function GuestNavbar() {
         justifyContent="space-between"
         paddingX={8}
       >
-        <Logo />
         <Flex height={16} alignItems="center" justifyContent="center" as="nav" width="100%">
           <Stack direction="row" spacing={6} alignItems="center">
             <NavLink style={{ color: 'black' }} to="/">
-              Home
+              <Image 
+                src={images.africaLogo}
+                width={30}
+                height={30}
+              />
             </NavLink>
             <NavLink style={{ color: 'black' }} to="/about">
               About Us
