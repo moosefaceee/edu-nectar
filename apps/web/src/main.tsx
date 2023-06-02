@@ -7,7 +7,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { AppProvider } from './context'
-import theme from './theme'
+import { theme } from 'ui'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
