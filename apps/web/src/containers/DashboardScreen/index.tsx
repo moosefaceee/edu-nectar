@@ -1,15 +1,13 @@
 import { Stack, Text } from '@chakra-ui/react'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery } from 'react-query'
 import { useAuth } from '../../context/AuthProvider'
 import { getLearningPaths } from '../../queries'
 
 function DashboardScreen(): React.ReactElement {
   const { user } = useAuth()
-  // Access the client
-  const queryClient = useQueryClient()
 
   // Queries
-  const { data: learningPaths, isLoading, error } = useQuery('todos', getLearningPaths)
+  const { data: learningPaths, isLoading, error } = useQuery('learningPaths', getLearningPaths)
 
   if (isLoading) return <Text>Loading...</Text>
 
