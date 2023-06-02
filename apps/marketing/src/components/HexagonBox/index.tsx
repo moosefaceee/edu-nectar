@@ -1,12 +1,13 @@
-import { Center, Text } from '@chakra-ui/react'
+import { Button, Center, Divider, Flex, Stack, Text } from '@chakra-ui/react'
+import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Logo } from '..'
 import styled from '@emotion/styled'
 import { theme } from '../../theme'
 
-type HexagonProps = {
-  title?: { topic: string }
-  onClick: () => void
+type HexagonBoxProps = {
+  onClick?: () => void
+  children?: JSX.Element
 }
-
 const Hexagon = styled.span`
   .hex {
     margin-top: 60px;
@@ -45,24 +46,16 @@ const Hexagon = styled.span`
     cursor: pointer;
   }
 `
-
-function HexagonCard({ title, onClick }: HexagonProps) {
+function HexagonBox({ children, onClick }: HexagonBoxProps) {
   return (
-    <Hexagon onClick={onClick}>
-      <Center className="hex" maxWidth="208px">
-        <Text
-          textStyle="h5"
-          color="white"
-          textAlign="center"
-          overflowWrap="break-word"
-          marginTop={8}
-          paddingX={2}
-        >
-          {title?.topic}
+    <Hexagon onClick={() => onClick?.()}>
+      <Center className="hex">
+        <Text textStyle="h5" color="white" textAlign="center">
         </Text>
+        {children}
       </Center>
     </Hexagon>
   )
 }
 
-export default HexagonCard
+export default HexagonBox

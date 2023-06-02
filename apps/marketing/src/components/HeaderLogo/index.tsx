@@ -5,7 +5,7 @@ export default function HeaderLogo() {
 
   return (
     <Box display='flex'>
-      <Image src={images.sovtech} margin={0}/>
+      <Image src={images.sovtech} />
       <Box marginTop={170}
         marginLeft={-200}
       >

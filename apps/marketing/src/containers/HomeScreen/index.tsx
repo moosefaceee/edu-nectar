@@ -12,7 +12,7 @@ function HomeScreen(): React.ReactElement {
       <Text
         textStyle="h4"
         fontWeight="600"
-        color="black"
+        color="brand.900"
         paddingX="20vw"
         paddingTop={12}
         textAlign="center"
