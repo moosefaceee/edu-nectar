@@ -57,7 +57,7 @@ function PasswordInput({
             borderBottomLeftRadius={0}
             _invalid={{ borderColor: 'red' }}
             _focus={{ borderColor: 'brand.500' }}
-            _hover={{ backgroundColor: 'gray.100' }}
+            _hover={{ backgroundColor: 'brand.500' }}
           >
             {passwordVisible ? (
               <Icon as={FiEye} width={20} color="brand.500" />

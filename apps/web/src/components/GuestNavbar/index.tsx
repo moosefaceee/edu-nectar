@@ -8,7 +8,7 @@ function GuestNavbar() {
       <Flex
         alignItems="center"
         as="header"
-        backgroundColor="brand.400"
+        backgroundColor="brand.100"
         justifyContent="space-between"
         paddingX={8}
       >
@@ -20,7 +20,7 @@ function GuestNavbar() {
           </Stack>
         </Flex>
       </Flex>
-      <Divider borderColor="brand.300" />
+      <Divider borderColor="brand.500" />
       <Outlet />
     </>
   )

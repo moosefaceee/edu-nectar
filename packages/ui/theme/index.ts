@@ -42,7 +42,7 @@ const Input: ComponentStyleConfig = {
   variants: {
     outline: {
       field: {
-        background: "inherit",
+        background: "brand.500",
         border: "1px solid",
         borderColor: "inherit",
         _focus: {
@@ -70,7 +70,7 @@ const Input: ComponentStyleConfig = {
     },
     flushed: {
       field: {
-        background: "transparent",
+        background: "brand.500",
         borderBottom: "1px solid",
         borderColor: "inherit",
         borderRadius: 0,
@@ -83,7 +83,7 @@ const Input: ComponentStyleConfig = {
     },
     unstyled: {
       field: {
-        background: "transparent",
+        background: "brand.500",
         borderRadius: "md",
         height: "auto",
         paddingX: 0,
