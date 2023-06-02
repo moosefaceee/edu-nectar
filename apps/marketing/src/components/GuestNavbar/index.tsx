@@ -29,7 +29,7 @@ function GuestNavbar() {
         <Button
           as={Link}
           to="https://edu-nectar-web.onrender.com/"
-          bgColor="gray.700"
+          bgColor="gray.800"
           fontWeight="500"
           width={150}
         >
