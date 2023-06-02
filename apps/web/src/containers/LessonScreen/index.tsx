@@ -18,7 +18,7 @@ function LessonScreen(): React.ReactElement {
           textAlign="center"
           maxWidth="450px"
         >
-          <Text color="black" textStyle="h2" fontWeight="600" marginBottom={6}>
+          <Text color="black" textStyle="h2" fontWeight="600" marginBottom={4}>
             What is warehouse management?
           </Text>
         </Flex>
@@ -30,7 +30,7 @@ function LessonScreen(): React.ReactElement {
             height="650px"
             justifyContent="flex-start"
           >
-            <Text textAlign="center" color="black">
+            <Text textAlign="center" color="black" fontWeight="500">
               In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
               demonstrate the visual form of a document or a typeface without relying on meaningful
               content. Lorem ipsum may be used as a placeholder before final copy is available. It
