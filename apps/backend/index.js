@@ -55,9 +55,9 @@ async function main() {
     }
   })
 
-  app.get('/api/quiz/', async function (req, res) {
+  app.get('/api/quiz/:id', async function (req, res) {
     try {
-      const result = await QuizModel.find({ topic: req.body.topicId })
+      const result = await QuizModel.find({ topic: req.params.id })
       console.log(result)
       res.json(result)
     } catch (error) {
@@ -65,9 +65,9 @@ async function main() {
       res.status(500).json({ errorMessage: 'Failed to fetch ', error })
     }
   })
-  app.get('/api/summary', async function (req, res) {
+  app.get('/api/summary/:id', async function (req, res) {
     try {
-      const result = await SummaryModel.find({ topic: req.body.topicId })
+      const result = await SummaryModel.find({ topic: req.params.id })
       res.json(result)
     } catch (error) {
       console.log(error)
