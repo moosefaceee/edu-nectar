@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import { connect } from 'mongoose'
 import { TestRouter } from './routes/index.js'
 import { VectorStore } from './vectorStore/index.js'
-import { getTopics, submitQuestion } from './routes/vectorStore.js'
+import { QuizModel, SummaryModel, TopicsModel } from './models/index.js'
 
 async function main() {
   const { json } = bodyParser
@@ -33,28 +33,54 @@ async function main() {
   const vectorStore = new VectorStore()
   await vectorStore.initialise()
 
-  app.get('/api/quiz', async function (_, res) {
+  app.get('/api/generate', async function (_, res) {
     try {
-      const result = await vectorStore.askForQuestions()
+      const topicsResult = await vectorStore.askForTopics()
+
+      const { topics } = topicsResult[0]
+      console.log(topics)
+      if (topics.length) {
+        for await (const topic of topics) {
+          console.log(`Current topic: ${topic.topic}`)
+          console.log('Asking for questions...')
+          await vectorStore.askForQuestions(topic)
+          console.log('Asking for summary...')
+          await vectorStore.askForSummary(topic)
+        }
+        console.log('Done ✅')
+        res.status(200)
+      }
+    } catch (error) {
+      res.status(500).json({ errorMessage: 'Failed to generate', error })
+    }
+  })
+
+  app.get('/api/quiz/', async function (req, res) {
+    try {
+      const result = await QuizModel.find({ topic: req.body.topicId })
+      console.log(result)
       res.json(result)
     } catch (error) {
+      console.log(error)
       res.status(500).json({ errorMessage: 'Failed to fetch ', error })
     }
   })
-  app.get('/api/summary', async function (_, res) {
+  app.get('/api/summary', async function (req, res) {
     try {
-      const result = await vectorStore.askForSummary()
+      const result = await SummaryModel.find({ topic: req.body.topicId })
       res.json(result)
     } catch (error) {
+      console.log(error)
       res.status(500).json({ errorMessage: 'Failed to fetch ', error })
     }
   })
 
   app.get('/api/topics', async function (_, res) {
     try {
-      const result = await vectorStore.askForTopics()
+      const result = await TopicsModel.find({})
       res.json(result)
     } catch (error) {
+      console.log(error)
       res.status(500).json({ errorMessage: 'Failed to fetch ', error })
     }
   })
