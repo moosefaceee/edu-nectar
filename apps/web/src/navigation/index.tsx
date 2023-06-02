@@ -6,7 +6,6 @@ import {
   LessonScreen,
   LoginScreen,
   NotFoundScreen,
-  QuizScreen,
   TopicsScreen
 } from '../containers'
 import { RequireAuth } from '../context/AuthProvider'
@@ -49,7 +48,6 @@ function Navigation() {
             <Route path="dashboard" element={<TopicsScreen />} />
             <Route path="learning-path/:id" element={<LearningPathsScreen />} />
             <Route path="lesson/:id" element={<LessonScreen />} />
-            <Route path="quiz/:id" element={<QuizScreen />} />
             <Route path="*" element={<NotFoundScreen />} />
           </Route>
         </Route>

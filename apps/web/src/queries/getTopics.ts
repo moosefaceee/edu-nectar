@@ -6,7 +6,7 @@ const HOST_URL =
     : import.meta.env.VITE_ENVIRONMENT
 
 export const getTopics = async () => {
-  const res = await axios.get(`${HOST_URL}/test/api/topics`)
+  const res = await axios.get(`${HOST_URL}/api/topics`)
 
   return res
 }

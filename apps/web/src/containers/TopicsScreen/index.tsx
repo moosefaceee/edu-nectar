@@ -10,9 +10,9 @@ function TopicsScreen(): React.ReactElement {
 
   const { data, isLoading } = useQuery('topics', getTopics)
 
-  const parsed = data?.data && JSON.parse(data.data)[0]
+  const parsed = data?.data
 
-  const topics = parsed?.topics && parsed.topics.slice(0, 6)
+  const topics = parsed && parsed[0].topics.slice(0, 6)
 
   if (isLoading)
     return (
@@ -48,9 +48,9 @@ function TopicsScreen(): React.ReactElement {
                     <GridItem>
                       <HexagonCard
                         onClick={() =>
-                          navigate(`/auth/lesson/${12345}`, {
+                          navigate(`/auth/lesson/${topic._id}`, {
                             state: {
-                              topic: 'Topic One'
+                              topic: topic.topic
                             }
                           })
                         }
@@ -62,7 +62,6 @@ function TopicsScreen(): React.ReactElement {
               </Grid>
             </VStack>
           </Card>
-          {/* <Image src={} /> */}
         </Flex>
       </VStack>
     </Stack>

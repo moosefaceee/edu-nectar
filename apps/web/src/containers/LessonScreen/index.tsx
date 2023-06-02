@@ -2,7 +2,7 @@ import { Box, Button, Card, Center, Flex, HStack, Stack, Text, VStack } from '@c
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import beeLoader from '../../assets/lotties/bee-loader.json'
 import { Lottie } from '../../components'
 import { ConnectedRadioGroup, MessageInput } from '../../components/FormElements'
@@ -12,17 +12,27 @@ function LessonScreen(): React.ReactElement {
   const [renderQuiz, setRenderQuiz] = useState<boolean>(false)
   const [conversation, setConversation] = useState<any>([])
 
-  const navigate = useNavigate()
+  const params = useParams()
 
-  const { isLoading } = useQuery('summary', getSummary, {
-    onSuccess: (data) => {
-      const parsed = data?.data && JSON.parse(data.data)[0]
+  const location = useLocation()
 
-      const summary = parsed?.summary && parsed.summary.slice(0, 6)
+  const state = location.state?.topic
 
-      setConversation(summary)
+  console.log('state', state)
+
+  const { data: summaryData, isLoading } = useQuery(
+    ['summary', { id: params?.id }],
+    () => getSummary(params?.id || ''),
+    {
+      onSuccess: (data) => {
+        const parsed = data?.data && data?.data[0]
+
+        const summary = parsed?.summary && parsed.summary.slice(0, 6)
+
+        setConversation(summary)
+      }
     }
-  })
+  )
 
   let methods = useForm({
     defaultValues: { summary: '' }
@@ -36,21 +46,12 @@ function LessonScreen(): React.ReactElement {
     methods.reset({ summary: '' })
   }
 
-  const { data } = useQuery('quiz', getQuiz)
+  const { data } = useQuery(['quiz', { id: params?.id }], () => getQuiz(params?.id || ''))
 
-  const parsed = data?.data && JSON.parse(data.data)[0]
+  const parsed = data?.data && data?.data[0]
+  console.log('parsed', parsed)
 
-  const question = parsed?.question
-
-  const answers = parsed?.answers
-
-  console.log('answers', answers)
-
-  const options = answers?.map((answer: any) => {
-    return { label: answer?.answer, value: answer?.answer }
-  })
-
-  console.log('options', options)
+  const questions = parsed?.questions
 
   let quizMethods = useForm({
     defaultValues: { answer: '' }
@@ -96,24 +97,25 @@ function LessonScreen(): React.ReactElement {
           maxWidth="450px"
         >
           <Text color="black" textStyle="h2" fontWeight="600" marginBottom={4}>
-            What is warehouse management?
+            {state}
           </Text>
         </Flex>
         <VStack width="100%" justifyContent="flex-start" height="100%">
-          {conversation.map((summary: any) => {
-            return (
-              <Card
-                width="100%"
-                padding={6}
-                backgroundColor="brand.100"
-                justifyContent="flex-start"
-              >
-                <Text textAlign="center" color="black" fontWeight="500">
-                  {summary.paragraph}
-                </Text>
-              </Card>
-            )
-          })}
+          {conversation &&
+            conversation.map((summary: any) => {
+              return (
+                <Card
+                  width="100%"
+                  padding={6}
+                  backgroundColor="brand.100"
+                  justifyContent="flex-start"
+                >
+                  <Text textAlign="center" color="black" fontWeight="500">
+                    {summary.paragraph}
+                  </Text>
+                </Card>
+              )
+            })}
         </VStack>
         <HStack width="100%" alignItems="center" justifyContent="center">
           <FormProvider {...methods}>
@@ -145,10 +147,23 @@ function LessonScreen(): React.ReactElement {
                 backgroundColor="brand.100"
                 justifyContent="flex-start"
               >
-                <Text textAlign="center" color="black" fontWeight="500" marginBottom={4}>
-                  {question}
-                </Text>
-                <ConnectedRadioGroup name="answer" options={options} />
+                {questions &&
+                  questions.map((question: any) => {
+                    const answers = question?.answers
+
+                    const options = answers?.map((answer: any) => {
+                      return { label: answer?.answer, value: answer?.answer }
+                    })
+
+                    return (
+                      <Box marginTop={6}>
+                        <Text textAlign="center" color="black" fontWeight="500" marginBottom={4}>
+                          {question.question}
+                        </Text>
+                        {options && <ConnectedRadioGroup name="answer" options={options} />}
+                      </Box>
+                    )
+                  })}
               </Card>
               <Flex width="100%" alignItems="center" justifyContent="flex-end">
                 <Button

@@ -5,8 +5,8 @@ const HOST_URL =
     ? import.meta.env.VITE_HOST_URL_TEST
     : import.meta.env.VITE_ENVIRONMENT
 
-export const getSummary = async () => {
-  const res = await axios.get(`${HOST_URL}/test/api/summary`)
+export const getSummary = async (id: string) => {
+  const res = await axios.get(`${HOST_URL}/api/summary/${id}`)
 
   return res
 }
