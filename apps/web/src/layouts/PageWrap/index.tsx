@@ -21,5 +21,5 @@ function PageWrap({ children, title, ...rest }: PageWrapProps) {
 export default PageWrap
 
 PageWrap.defaultProps = {
-  minHeight: '100vh' // minus height of GuestNavbar or Navbar,
+  minHeight: '90vh' // minus height of GuestNavbar or Navbar,
 }
