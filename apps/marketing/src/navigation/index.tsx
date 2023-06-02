@@ -1,43 +1,17 @@
 import { Route, Routes } from 'react-router-dom'
-import { GuestNavbar, Navbar } from '../components'
-import { AboutScreen, DashboardScreen, HomeScreen, NotFoundScreen } from '../containers'
-import { RequireAuth } from '../context/AuthProvider'
+import { GuestNavbar } from '../components'
+import { AboutScreen, FAQScreen, HomeScreen, NotFoundScreen, PricingScreen } from '../containers'
 import { PageWrap } from '../layouts'
-
-/**
- * Trying to keep navigation as simple as possible. Easier to comprehend as a new developer.
- * This will still be expanded on greatly. Perhaps lazy imports for Screens for performance 🚀
- * TODO: Dynamic titles
- */
 
 function Navigation() {
   return (
     <Routes>
-      {/*
-       * Unauthenticated pages (Guest)
-       */}
       <Route element={<GuestNavbar />}>
-        <Route element={<PageWrap title="Core Suite" />}>
-          <Route path="/" element={<AboutScreen />} />
-          <Route path="home" element={<HomeScreen />} />
-          <Route path="*" element={<NotFoundScreen />} />
-        </Route>
-      </Route>
-      {/*
-       * Authenticated pages
-       *
-       * All paths will be prepended with /auth and are protected by the AuthProvider
-       * When a Guest tries to navigate to any of these, they will be taken to /
-       */}
-      <Route
-        element={
-          <RequireAuth>
-            <Navbar />
-          </RequireAuth>
-        }
-      >
-        <Route path="/auth" element={<PageWrap title="Core Suite" />}>
-          <Route path="dashboard" element={<DashboardScreen />} />
+        <Route element={<PageWrap title="EduNectar" />}>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="about" element={<AboutScreen />} />
+          <Route path="pricing" element={<PricingScreen />} />
+          <Route path="faq" element={<FAQScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Route>
       </Route>

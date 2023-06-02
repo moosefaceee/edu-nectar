@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/react'
 
-function HomeScreen(): React.ReactElement {
+function PricingScreen(): React.ReactElement {
   return <Stack flexDirection="column" paddingX={20} paddingY={4}></Stack>
 }
 
-export default HomeScreen
+export default PricingScreen
