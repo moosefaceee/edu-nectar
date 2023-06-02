@@ -20,5 +20,6 @@ export default {
   walkthroughThree: new URL('../assets/walkthrough/walkthrough-three.jpg', import.meta.url).href,
   walkthroughFour: new URL('../assets/walkthrough/walkthrough-four.jpg', import.meta.url).href,
   walkthroughFive: new URL('../assets/walkthrough/walkthrough-five.jpg', import.meta.url).href,
+  people: new URL('../assets/images/people.png', import.meta.url).href,
   bee: new URL('../assets/lotties/bee-loader.json', import.meta.url).href
 }

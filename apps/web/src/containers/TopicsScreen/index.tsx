@@ -75,7 +75,7 @@ function TopicsScreen(): React.ReactElement {
             </Text>
           </Box>
         </Flex>
-        <Flex width="100%" justifyContent="center" flex={1} height="650px">
+        <Flex width="100%" justifyContent="center" flex={1} height="290px">
           <Card width="100%" padding={6} backgroundColor="brand.100" height="100%">
             <VStack spacing={6} width="100%">
               <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(3, 1fr)" gap={20}>
@@ -96,6 +96,7 @@ function TopicsScreen(): React.ReactElement {
               </Grid>
             </VStack>
           </Card>
+          {/* <Image src={} /> */}
         </Flex>
       </VStack>
     </Stack>
