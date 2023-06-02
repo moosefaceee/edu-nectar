@@ -42,6 +42,7 @@ function LoginScreen(): React.ReactElement {
                   <Link color="brand.800">Forgot password?</Link>
                 </Stack>
                 <Button
+                color='brand.900'
                   loadingText="Submitting"
                   size="lg"
                   colorScheme="brand"
