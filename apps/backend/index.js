@@ -85,7 +85,19 @@ async function main() {
     }
   })
 
-  app.use('/test', TestRouter)
+  app.post('/api/user-response', async function (req, res) {
+    const { topic, question, reply } = req.body
+    try {
+      const response = await vectorStore.answerUserResponse(
+        topic,
+        question,
+        reply
+      )
+      res.json({ response })
+    } catch (error) {
+      console.log(error)
+    }
+  })
 
   // Start the server
   app.listen(port, () => {
