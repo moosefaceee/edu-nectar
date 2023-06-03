@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { theme } from '../../theme'
 
 type HexagonProps = {
-  title?: string
+  title?: { topic: string }
   onClick: () => void
 }
 
@@ -46,7 +46,7 @@ const Hexagon = styled.span`
   }
 `
 
-function HexagonCard({ title = 'Hello', onClick }: HexagonProps) {
+function HexagonCard({ title, onClick }: HexagonProps) {
   return (
     <Hexagon onClick={onClick}>
       <Center className="hex" maxWidth="208px">
@@ -58,7 +58,7 @@ function HexagonCard({ title = 'Hello', onClick }: HexagonProps) {
           marginTop={8}
           paddingX={2}
         >
-          {title}
+          {title?.topic}
         </Text>
       </Center>
     </Hexagon>

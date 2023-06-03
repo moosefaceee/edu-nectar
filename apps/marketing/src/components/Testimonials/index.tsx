@@ -91,8 +91,10 @@ export default function WithSpeechBubbles() {
             <TestimonialContent>
               <TestimonialHeading>Efficient Collaborating</TestimonialHeading>
               <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor neque sed imperdiet
-                nibh lectus feugiat nunc sem.
+                I wanted to leave a glowing review for the EduNectar education service that created
+                customised lesson plans for me over the past few months. The lesson plans were
+                tailored to my comapnies needs, learning pace, and interests. The topics were highly
+                engaging and the content was high quality.
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
@@ -105,8 +107,9 @@ export default function WithSpeechBubbles() {
             <TestimonialContent>
               <TestimonialHeading>Intuitive Design</TestimonialHeading>
               <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor neque sed imperdiet
-                nibh lectus feugiat nunc sem.
+                Thank you for igniting my love of learning - you have a customer for life! Overall
+                an extremely worthwhile investment in myself and my education. Keep up the amazing,
+                impactful work!
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
@@ -119,8 +122,10 @@ export default function WithSpeechBubbles() {
             <TestimonialContent>
               <TestimonialHeading>Mindblowing Service</TestimonialHeading>
               <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor neque sed imperdiet
-                nibh lectus feugiat nunc sem.
+                Once my company offered this platform to us as a resource for up-skilling, I
+                rediscovered the joy of learning and pushed myself to progress with a new skill.
+                Being able to apply what I have learnt in my current and future jobs has been
+                incredibly beneficial.
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar

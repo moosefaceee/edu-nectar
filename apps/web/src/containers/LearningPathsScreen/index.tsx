@@ -1,8 +1,6 @@
 import { Box, Card, Flex, Grid, Stack, Text, VStack } from '@chakra-ui/react'
-import { useQuery } from 'react-query'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { HexagonCard } from '../../components'
-import { getLearningPaths } from '../../queries'
 
 function LearningPathsScreen(): React.ReactElement {
   const params = useParams()
@@ -16,11 +14,11 @@ function LearningPathsScreen(): React.ReactElement {
   const navigate = useNavigate()
 
   // Queries
-  const { data: learningPaths, isLoading, error } = useQuery('learningPaths', getLearningPaths)
+  // const { data: learningPaths, isLoading, error } = useQuery('learningPaths', getLearningPaths)
 
-  if (isLoading) return <Text>Loading...</Text>
+  // if (isLoading) return <Text>Loading...</Text>
 
-  console.log('learningPaths', learningPaths)
+  // console.log('learningPaths', learningPaths)
 
   return (
     <Stack flexDirection="column" padding={6} width="100%">
@@ -46,7 +44,10 @@ function LearningPathsScreen(): React.ReactElement {
             <VStack spacing={6} width="100%">
               <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(3, 1fr)" gap={20}>
                 {['one', 'two', 'three', 'four', 'five', 'six'].map((topic) => (
-                  <HexagonCard onClick={() => navigate(`/auth/lesson/${12345}`)} title={topic} />
+                  <HexagonCard
+                    onClick={() => navigate(`/auth/lesson/${12345}`)}
+                    title={{ topic: '' }}
+                  />
                 ))}
               </Grid>
             </VStack>
