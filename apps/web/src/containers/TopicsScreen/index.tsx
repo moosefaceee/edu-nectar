@@ -1,22 +1,24 @@
-import {
-  Box,
-  Card,
-  Center,
-  Flex,
-  Grid,
-  GridItem,
-  Stack,
-  Text,
-  VStack,
-  Image
-} from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import beeLoader from '../../assets/lotties/bee-loader.json'
+
+import {
+  Box,
+  Center,
+  Flex,
+  Image,
+  Stack,
+  Text,
+  VStack
+} from '@chakra-ui/react'
+
 import beeline from '../../assets/images/beeline.svg'
-import { HexagonCard, Lottie } from '../../components'
-import { getTopics } from '../../queries'
+import beeLoader from '../../assets/lotties/bee-loader.json'
+import {
+  HexagonCard,
+  Lottie
+} from '../../components'
 import { HexagonContainer } from '../../components/HexagonCard'
+import { getTopics } from '../../queries'
 
 function TopicsScreen(): React.ReactElement {
   const navigate = useNavigate()
@@ -46,37 +48,37 @@ function TopicsScreen(): React.ReactElement {
           <Image src={beeline} width={'5rem'} />
 
           <Box maxWidth={350} marginBottom={2}>
-                <Text color="black" textStyle="h5">
-                  Welcome to EduNectar!
-                </Text>
+            <Text color="black" textStyle="h5">
+              Welcome to EduNectar!
+            </Text>
 
-                <Text color="black" textStyle="h5">
-                  Select a topic and begin your learning journey.
-                </Text>
+            <Text color="black" textStyle="h5">
+              Select a topic and begin your learning journey.
+            </Text>
           </Box>
         </Flex>
         <Flex width="100%" justifyContent="center" flex={1} height="500px">
-          <Card width="100%" padding={6} backgroundColor="brand.100" height="550px">
-            <HexagonContainer size={200} margin={2}>
-              <Box className="container">
-                {topics.map((topic: any) => {
-                  return (
-                    <HexagonCard
-                      key={topic.id}
-                      onClick={() =>
-                        navigate(`/auth/lesson/${topic._id}`, {
-                          state: {
-                            topic: topic.topic
-                          }
-                        })
-                      }
-                      title={topic}
-                    />
-                  )
-                })}
-              </Box>
-            </HexagonContainer>
-          </Card>
+          {/* <Card width="100%" padding={6} height="550px" backgroundColor="trnasparent"> */}
+          <HexagonContainer size={200} margin={2}>
+            <Box className="container">
+              {topics.map((topic: any) => {
+                return (
+                  <HexagonCard
+                    key={topic.id}
+                    onClick={() =>
+                      navigate(`/auth/lesson/${topic._id}`, {
+                        state: {
+                          topic: topic.topic
+                        }
+                      })
+                    }
+                    title={topic}
+                  />
+                )
+              })}
+            </Box>
+          </HexagonContainer>
+          {/* </Card> */}
         </Flex>
       </VStack>
     </Stack>

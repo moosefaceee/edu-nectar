@@ -202,6 +202,7 @@ function LessonScreen(): React.ReactElement {
                 padding={6}
                 backgroundColor="brand.100"
                 justifyContent="flex-start"
+                backgroundColor="whiteAlpha.600"
               >
                 {questions &&
                   questions.map((question: any, index: number) => {
