@@ -16,7 +16,7 @@ import beeLoader from '../../assets/lotties/bee-loader.json'
 import beeline from '../../assets/images/beeline.svg'
 import { HexagonCard, Lottie } from '../../components'
 import { getTopics } from '../../queries'
-import { theme } from '../../../theme'
+import { HexagonContainer } from '../../components/HexagonCard'
 
 function TopicsScreen(): React.ReactElement {
   const navigate = useNavigate()
@@ -25,7 +25,7 @@ function TopicsScreen(): React.ReactElement {
 
   const parsed = data?.data
 
-  const topics = parsed && parsed[0].topics.slice(0, 6)
+  const topics = parsed && parsed[0].topics
 
   if (isLoading)
     return (
@@ -55,28 +55,27 @@ function TopicsScreen(): React.ReactElement {
                 </Text>
           </Box>
         </Flex>
-        <Flex width="100%" justifyContent="center" flex={1} height="500px" flexDir={'column'}>
-          <Card width="100%" padding={6} backgroundColor="brand.100" height="550px" background={theme.colors.brand[300]}>
-            <VStack spacing={6} width="100%">
-              <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(3, 1fr)" gap={20}>
+        <Flex width="100%" justifyContent="center" flex={1} height="500px">
+          <Card width="100%" padding={6} backgroundColor="brand.100" height="550px">
+            <HexagonContainer size={200} margin={2}>
+              <Box className="container">
                 {topics.map((topic: any) => {
                   return (
-                    <GridItem>
-                      <HexagonCard
-                        onClick={() =>
-                          navigate(`/auth/lesson/${topic._id}`, {
-                            state: {
-                              topic: topic.topic
-                            }
-                          })
-                        }
-                        title={topic}
-                      />
-                    </GridItem>
+                    <HexagonCard
+                      key={topic.id}
+                      onClick={() =>
+                        navigate(`/auth/lesson/${topic._id}`, {
+                          state: {
+                            topic: topic.topic
+                          }
+                        })
+                      }
+                      title={topic}
+                    />
                   )
                 })}
-              </Grid>
-            </VStack>
+              </Box>
+            </HexagonContainer>
           </Card>
         </Flex>
       </VStack>
