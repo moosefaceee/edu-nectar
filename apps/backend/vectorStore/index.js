@@ -44,13 +44,6 @@ export class VectorStore {
     )
 
     /* Create the agent */
-    const vectorStoreInfo = {
-      name: 'warehouse management',
-      description: 'a complete guide for retailers',
-      vectorStore,
-    }
-
-    console.log('here')
 
     this.chain = RetrievalQAChain.fromLLM(this.model, vectorStore.asRetriever())
     console.log('initialization completed')
@@ -151,6 +144,21 @@ export class VectorStore {
     } catch (error) {
       console.log(error)
       return { error: error }
+    }
+  }
+
+  async answerUserResponse(topic, question, reply) {
+    const query = reply
+      ? `The user has responded to your answer: """${reply}""" with: """${question}""". You should only respond with your response to the user's question`
+      : `A user has asked a question: """${question}""" on topic: """${topic}""" You should only respond with your response to the user's question`
+    try {
+      const { text } = await this.chain.call({
+        query,
+      })
+      console.log(text)
+      return text
+    } catch (error) {
+      console.log(error)
     }
   }
 }
