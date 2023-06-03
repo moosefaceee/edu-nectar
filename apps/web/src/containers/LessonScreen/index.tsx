@@ -200,7 +200,6 @@ function LessonScreen(): React.ReactElement {
               <Card
                 width="100%"
                 padding={6}
-                backgroundColor="brand.100"
                 justifyContent="flex-start"
                 backgroundColor="whiteAlpha.600"
               >

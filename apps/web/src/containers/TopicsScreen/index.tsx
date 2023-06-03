@@ -58,7 +58,6 @@ function TopicsScreen(): React.ReactElement {
           </Box>
         </Flex>
         <Flex width="100%" justifyContent="center" flex={1} height="500px">
-          {/* <Card width="100%" padding={6} height="550px" backgroundColor="trnasparent"> */}
           <HexagonContainer size={200} margin={2}>
             <Box className="container">
               {topics.map((topic: any) => {
@@ -78,7 +77,6 @@ function TopicsScreen(): React.ReactElement {
               })}
             </Box>
           </HexagonContainer>
-          {/* </Card> */}
         </Flex>
       </VStack>
     </Stack>
