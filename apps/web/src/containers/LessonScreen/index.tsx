@@ -1,17 +1,8 @@
-import {
-  useEffect,
-  useState
-} from 'react'
+import { useEffect, useState } from 'react'
 
-import {
-  FormProvider,
-  useForm
-} from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
-import {
-  useLocation,
-  useParams
-} from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import {
   Box,
@@ -30,15 +21,8 @@ import {
 import beeline from '../../assets/images/beeline.svg'
 import beeLoader from '../../assets/lotties/bee-loader.json'
 import { Lottie } from '../../components'
-import {
-  ConnectedRadioGroup,
-  MessageInput
-} from '../../components/FormElements'
-import {
-  getQuiz,
-  getSummary,
-  getUserResponse
-} from '../../queries'
+import { ConnectedRadioGroup, MessageInput } from '../../components/FormElements'
+import { getQuiz, getSummary, getUserResponse } from '../../queries'
 
 function LessonScreen(): React.ReactElement {
   const [renderQuiz, setRenderQuiz] = useState<boolean>(false)
@@ -99,11 +83,9 @@ function LessonScreen(): React.ReactElement {
   let quizMethods = useForm({
     defaultValues: { answer: '' }
   })
-
+  const [markQuiz, setMarkQuiz] = useState(false)
   const quizOnSubmit = (data: any) => {
-    console.log('data', data)
-    if (data.answer === 'Yes') {
-    }
+    setMarkQuiz(true)
   }
 
   useEffect(() => {
@@ -210,14 +192,20 @@ function LessonScreen(): React.ReactElement {
                     const options = answers?.map((answer: any) => {
                       return { label: answer?.answer, value: answer?.answer }
                     })
-
+                    const [correctAnswer] = answers.filter((answer: any) => answer.isCorrect)
+                    console.log(correctAnswer)
                     return (
                       <Box marginTop={6}>
                         <Text textAlign="center" color="black" fontWeight="500" marginBottom={4}>
                           {question.question}
                         </Text>
                         {options && (
-                          <ConnectedRadioGroup name={`answer-${index}`} options={options} />
+                          <ConnectedRadioGroup
+                            isMarked={markQuiz}
+                            name={`answer-${index}`}
+                            options={options}
+                            correctAnswer={correctAnswer}
+                          />
                         )}
                       </Box>
                     )
