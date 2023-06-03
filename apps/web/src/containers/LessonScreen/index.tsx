@@ -148,7 +148,7 @@ function LessonScreen(): React.ReactElement {
                 justifyContent="flex-start"
               >
                 {questions &&
-                  questions.map((question: any) => {
+                  questions.map((question: any, index: number) => {
                     const answers = question?.answers
 
                     const options = answers?.map((answer: any) => {
@@ -160,7 +160,9 @@ function LessonScreen(): React.ReactElement {
                         <Text textAlign="center" color="black" fontWeight="500" marginBottom={4}>
                           {question.question}
                         </Text>
-                        {options && <ConnectedRadioGroup name="answer" options={options} />}
+                        {options && (
+                          <ConnectedRadioGroup name={`answer-${index}`} options={options} />
+                        )}
                       </Box>
                     )
                   })}
