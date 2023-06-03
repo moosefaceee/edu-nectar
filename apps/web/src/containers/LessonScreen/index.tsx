@@ -1,23 +1,44 @@
 import {
+  useEffect,
+  useState
+} from 'react'
+
+import {
+  FormProvider,
+  useForm
+} from 'react-hook-form'
+import { useQuery } from 'react-query'
+import {
+  useLocation,
+  useParams
+} from 'react-router-dom'
+
+import {
   Box,
   Button,
   Card,
   Center,
   Flex,
   HStack,
+  Image,
   Spinner,
   Stack,
   Text,
   VStack
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
-import { useQuery } from 'react-query'
-import { useLocation, useParams } from 'react-router-dom'
+
+import beeline from '../../assets/images/beeline.svg'
 import beeLoader from '../../assets/lotties/bee-loader.json'
 import { Lottie } from '../../components'
-import { ConnectedRadioGroup, MessageInput } from '../../components/FormElements'
-import { getQuiz, getSummary, getUserResponse } from '../../queries'
+import {
+  ConnectedRadioGroup,
+  MessageInput
+} from '../../components/FormElements'
+import {
+  getQuiz,
+  getSummary,
+  getUserResponse
+} from '../../queries'
 
 function LessonScreen(): React.ReactElement {
   const [renderQuiz, setRenderQuiz] = useState<boolean>(false)
@@ -110,7 +131,7 @@ function LessonScreen(): React.ReactElement {
 
   return (
     <Stack flexDirection="column" padding={6} width="100%" paddingTop={12}>
-      <VStack width="100%" height="100%" spacing={6}>
+      <VStack width="100%" height="100%">
         <Flex
           width="100%"
           alignItems="center"
@@ -118,7 +139,7 @@ function LessonScreen(): React.ReactElement {
           textAlign="center"
           maxWidth="450px"
         >
-          <Text color="black" textStyle="h2" fontWeight="600" marginBottom={4}>
+          <Text color="black" textStyle="h2" fontWeight="600">
             {state}
           </Text>
         </Flex>
@@ -167,17 +188,20 @@ function LessonScreen(): React.ReactElement {
             textAlign="center"
             maxWidth="450px"
           >
-            <Text color="black" textStyle="h2" fontWeight="600">
-              Quiz
-            </Text>
+            <Stack flexDir={'row'}>
+              <Text color="black" textStyle="h2" fontWeight="600">
+                Quiz
+              </Text>
+              <Image src={beeline} width="3.5rem" />
+            </Stack>
           </Flex>
           <FormProvider {...quizMethods}>
             <VStack width="100%" justifyContent="flex-start" height="100%" spacing={4}>
               <Card
                 width="100%"
                 padding={6}
-                backgroundColor="brand.100"
                 justifyContent="flex-start"
+                backgroundColor="whiteAlpha.600"
               >
                 {questions &&
                   questions.map((question: any, index: number) => {
