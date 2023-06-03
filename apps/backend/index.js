@@ -12,13 +12,10 @@ async function main() {
   const mongoUri = process.env.MONGO_URI
 
   // Parse JSON request body
-  app.use(json())
+  app.use(express.json())
   app.use((_, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    )
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept')
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
     next()
   })
@@ -32,6 +29,20 @@ async function main() {
   // initialise vectorStore
   const vectorStore = new VectorStore()
   await vectorStore.initialise()
+
+  app.post('/api/user-response', async function (req, res) {
+    const { topic, question, reply } = req.body
+    try {
+      const response = await vectorStore.answerUserResponse(
+        topic,
+        question,
+        reply
+      )
+      res.json({ response })
+    } catch (error) {
+      console.log(error)
+    }
+  })
 
   app.get('/api/generate', async function (_, res) {
     try {
@@ -82,20 +93,6 @@ async function main() {
     } catch (error) {
       console.log(error)
       res.status(500).json({ errorMessage: 'Failed to fetch ', error })
-    }
-  })
-
-  app.post('/api/user-response', async function (req, res) {
-    const { topic, question, reply } = req.body
-    try {
-      const response = await vectorStore.answerUserResponse(
-        topic,
-        question,
-        reply
-      )
-      res.json({ response })
-    } catch (error) {
-      console.log(error)
     }
   })
 
