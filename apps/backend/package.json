@@ -7,7 +7,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "author": "EduNectar",
   "license": "MIT",
