@@ -44,7 +44,7 @@ function Navigation() {
         }
       >
         <Route element={<FullBleedWrap />}>
-          <Route path="/auth" element={<PageWrap title="Core Suite" />}>
+          <Route path="/auth" element={<PageWrap title="Edu Nectar" />}>
             <Route path="dashboard" element={<TopicsScreen />} />
             <Route path="learning-path/:id" element={<LearningPathsScreen />} />
             <Route path="lesson/:id" element={<LessonScreen />} />
