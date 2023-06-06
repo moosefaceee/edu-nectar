@@ -6,7 +6,7 @@ import { Topics } from '../types'
 export const useTopics = () => {
   const { data, isLoading } = useQuery('topics', getTopics)
 
-  const topics: Topics = useMemo(() => data?.data?.[1]?.topics, [data])
+  const topics: Topics = useMemo(() => data?.data?.[0]?.topics, [data])
 
   return { topics, isLoading }
 }
