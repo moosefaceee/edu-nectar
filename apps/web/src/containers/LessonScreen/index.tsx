@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-
+import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useQuery } from 'react-query'
 import { useLocation, useParams } from 'react-router-dom'
 
 import {
@@ -22,67 +20,54 @@ import beeline from '../../assets/images/beeline.svg'
 import beeLoader from '../../assets/lotties/bee-loader.json'
 import { Lottie } from '../../components'
 import { ConnectedRadioGroup, MessageInput } from '../../components/FormElements'
-import { getQuiz, getSummary, getUserResponse } from '../../queries'
+import { getUserResponse } from '../../queries'
+import { useQuiz, useSummary } from '../../hooks'
+import { Conversation } from '../../types'
 
 function LessonScreen(): React.ReactElement {
   const [renderQuiz, setRenderQuiz] = useState<boolean>(false)
-  const [conversation, setConversation] = useState<any>([])
+  const [conversation, setConversation] = useState<Conversation>([])
   const [responseIsLoading, setResponseIsLoading] = useState(false)
 
   const params = useParams()
-
+  const topicId = useMemo(() => params?.id || '', [params])
   const location = useLocation()
+  const topic = useMemo(() => location.state?.topic || '', [location])
 
-  const state = location.state?.topic
+  const { summary, isLoading: summaryIsLoading } = useSummary(topicId)
+  const { questions, isLoading: quizIsLoading } = useQuiz(topicId)
 
-  console.log('state', state)
-
-  const { data: summaryData, isLoading } = useQuery(
-    ['summary', { id: params?.id }],
-    () => getSummary(params?.id || ''),
-    {
-      onSuccess: (data) => {
-        const parsed = data?.data && data?.data[0]
-
-        const summary = parsed?.summary && parsed.summary.slice(0, 6)
-
-        setConversation(summary)
-      }
+  //set conversation
+  useEffect(() => {
+    if (summary?.length) {
+      setConversation([{ text: summary.map(({ paragraph }) => paragraph) }])
     }
-  )
+  }, [summary])
 
   let methods = useForm({
-    defaultValues: { summary: '' }
+    defaultValues: { userInput: '' }
   })
 
-  const onSubmit = (data: any) => {
-    console.log('clicked')
-    setConversation((prev: any) => [...prev, { paragraph: data.summary, isUser: true }])
+  const onSubmit = ({ userInput }: { userInput: string }) => {
+    setConversation((prev) => [...prev, { text: [userInput], isUser: true }])
     setResponseIsLoading(true)
     getUserResponse({
-      topic: 'Optimizing Warehouse Layout',
-      question: data.summary,
+      topic: topic,
+      question: userInput,
       reply: ''
     })
       .then((data) => {
-        console.log(data)
-        setConversation((prev: any) => [...prev, { paragraph: data.data.response }])
+        setConversation((prev) => [...prev, { text: [data.data.response] }])
       })
       .finally(() => setResponseIsLoading(false))
 
-    methods.reset({ summary: '' })
+    methods.reset({ userInput: '' })
   }
-
-  const { data } = useQuery(['quiz', { id: params?.id }], () => getQuiz(params?.id || ''))
-
-  const parsed = data?.data && data?.data[0]
-  console.log('parsed', parsed)
-
-  const questions = parsed?.questions
 
   let quizMethods = useForm({
     defaultValues: { answer: '' }
   })
+
   const [markQuiz, setMarkQuiz] = useState(false)
   const quizOnSubmit = (data: any) => {
     setMarkQuiz(true)
@@ -102,7 +87,7 @@ function LessonScreen(): React.ReactElement {
     }
   }
 
-  if (isLoading)
+  if (summaryIsLoading && !summary?.length)
     return (
       <Center flex={1}>
         <Box height="150px" width="150px">
@@ -113,36 +98,43 @@ function LessonScreen(): React.ReactElement {
 
   return (
     <Stack flexDirection="column" padding={6} width="100%" paddingTop={12}>
-      <VStack width="100%" height="100%">
+      <Flex width="100%" height="100%" flexDir={'column'}>
         <Flex
           width="100%"
-          alignItems="center"
+          alignItems="left"
           flexDirection="column"
-          textAlign="center"
-          maxWidth="450px"
+          textAlign="left"
+          maxWidth="650px"
+          mb={10}
         >
           <Text color="black" textStyle="h2" fontWeight="600">
-            {state}
+            {topic}
           </Text>
         </Flex>
         <VStack width="100%" justifyContent="flex-start" height="100%">
           {conversation &&
-            conversation.map((summary: any) => {
+            conversation.map((item, idx1) => {
               return (
                 <Card
+                  key={`conversation-${topicId}-${idx1}`}
                   width="90%"
                   padding={6}
                   backgroundColor="whiteAlpha.600"
                   justifyContent="flex-start"
-                  alignSelf={summary?.isUser ? 'flex-end' : 'flex-start'}
+                  alignSelf={item?.isUser ? 'flex-end' : 'flex-start'}
                 >
-                  <Text
-                    textAlign={summary?.isUser ? 'right' : 'left'}
-                    color="black"
-                    fontWeight="500"
-                  >
-                    {summary.paragraph}
-                  </Text>
+                  <Stack direction={'column'}>
+                    {item.text.map((paragraph, idx2) => (
+                      <Text
+                        key={`paragraph-${topicId}-${idx1}-${idx2}`}
+                        textAlign={item?.isUser ? 'right' : 'left'}
+                        color="black"
+                        fontWeight="500"
+                      >
+                        {paragraph}
+                      </Text>
+                    ))}
+                  </Stack>
                 </Card>
               )
             })}
@@ -152,16 +144,16 @@ function LessonScreen(): React.ReactElement {
             </Center>
           ) : null}
         </VStack>
-        <HStack width="100%" alignItems="center" justifyContent="center">
+        <HStack width="100%" alignItems="center" justifyContent="center" mt={10}>
           <FormProvider {...methods}>
-            <MessageInput name="summary" onClickSend={methods.handleSubmit(onSubmit)} />
+            <MessageInput name="userInput" onClickSend={methods.handleSubmit(onSubmit)} />
             <Button bg="brand.800" _hover={{ bg: 'brand.700' }} onClick={onClickRenderQuiz}>
               {renderQuiz ? 'Hide Quiz' : 'Start Quiz'}
             </Button>
           </FormProvider>
         </HStack>
-      </VStack>
-      {renderQuiz && (
+      </Flex>
+      {renderQuiz && !quizIsLoading && (
         <VStack width="100%" height="100%" spacing={6} marginTop={8}>
           <Flex
             width="100%"
